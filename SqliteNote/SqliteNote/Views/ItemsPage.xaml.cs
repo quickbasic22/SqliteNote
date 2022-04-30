@@ -29,10 +29,12 @@ namespace SqliteNote.Views
             _viewModel.OnAppearing();
         }
 
-        private void SwipeItem_Clicked(object sender, EventArgs e)
+        private void SwipeItem_Invoked(object sender, EventArgs e)
         {
-            DisplayAlert("Just a test", "Hello, World!", "Cancel");
-
+            var swipeItem = (SwipeItem)sender;
+            var item = swipeItem.BindingContext as Models.Item;
+            
+            _viewModel.Items.Remove(item);
         }
     }
 }
