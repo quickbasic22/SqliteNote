@@ -33,7 +33,8 @@ namespace SqliteNote.Views
         {
             var swipeItem = (SwipeItem)sender;
             var item = swipeItem.BindingContext as Models.Item;
-            
+
+            App.Database.DeleteNoteAsync(item);
             _viewModel.Items.Remove(item);
         }
     }

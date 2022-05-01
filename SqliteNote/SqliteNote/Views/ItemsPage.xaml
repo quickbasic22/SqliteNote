@@ -25,7 +25,15 @@
                             <SwipeItem Text="Delete" BackgroundColor="Red" Invoked="SwipeItem_Invoked" />
                         </SwipeView.RightItems>
                         <StackLayout Padding="10" x:DataType="model:Item">
+                            <Label Text="{Binding Id}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
                             <Label Text="{Binding Text}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                            <Label Text="{Binding Date, StringFormat='{0:d}'}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />

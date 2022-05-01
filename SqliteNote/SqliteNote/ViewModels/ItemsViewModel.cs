@@ -11,7 +11,6 @@ namespace SqliteNote.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
-
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
@@ -35,7 +34,7 @@ namespace SqliteNote.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await App.Database.GetNotesAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);

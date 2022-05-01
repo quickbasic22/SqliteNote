@@ -9,8 +9,9 @@ namespace SqliteNote.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        private string text = "";
+        private DateTime date = DateTime.Now;
+        private string description = "Just a description";
 
         public NewItemViewModel()
         {
@@ -32,6 +33,12 @@ namespace SqliteNote.ViewModels
             set => SetProperty(ref text, value);
         }
 
+        public DateTime Date
+        {
+            get => date;
+            set => SetProperty(ref date, value);
+        }
+
         public string Description
         {
             get => description;
@@ -51,12 +58,12 @@ namespace SqliteNote.ViewModels
         {
             Item newItem = new Item()
             {
-                Id = Guid.NewGuid().ToString(),
                 Text = Text,
+                Date = Date,
                 Description = Description
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await App.Database.SaveNoteAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
