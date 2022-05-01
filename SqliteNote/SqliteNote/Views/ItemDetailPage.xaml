@@ -4,20 +4,21 @@
              xmlns:viewmodels="clr-namespace:SqliteNote.ViewModels" x:DataType="viewmodels:ItemDetailViewModel"
              x:Class="SqliteNote.Views.ItemDetailPage"
              Title="{Binding Title}">
-
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Id:" FontSize="Medium" />
-        <Label Text="{Binding Id}" FontSize="Large" TextColor="DarkBlue" />
-        <Label Text="Text:" FontSize="Medium" />
-        <Entry Text="{Binding Text}" FontSize="Large" TextColor="DarkBlue" />
-        <Label Text="Date:" FontSize="Medium" />
-        <DatePicker Date="{Binding Date, StringFormat='{0:d}'}" FontSize="Large" TextColor="DarkMagenta" />
-        <Label Text="Description:" FontSize="Medium" />
-        <Entry Text="{Binding Description}" FontSize="Large" TextColor="DarkBlue" />
-        <StackLayout Orientation="Horizontal">
-            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Id:" FontSize="Medium" />
+            <Label Text="{Binding Id}" FontSize="Large" TextColor="DarkBlue" />
+            <Label Text="Text:" FontSize="Medium" />
+            <Entry Text="{Binding Text}" FontSize="Large" TextColor="DarkBlue" />
+            <Label Text="Date:" FontSize="Medium" />
+            <DatePicker Date="{Binding Date, StringFormat='{0:d}'}" FontSize="Large" TextColor="DarkMagenta" />
+            <Label Text="Description:" FontSize="Medium" />
+            <Entry Text="{Binding Description}" FontSize="Large" TextColor="DarkBlue" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
-    
+    </ScrollView>
+
 </ContentPage>

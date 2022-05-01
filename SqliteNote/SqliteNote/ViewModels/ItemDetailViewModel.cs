@@ -90,7 +90,11 @@ namespace SqliteNote.ViewModels
 
         private async void OnSave()
         {
-            await App.Database.SaveNoteAsync(Item);
+            Item.Description = Description;
+            Item.Text = Text;
+            Item.Date = (DateTime)Date;
+
+           var note = await App.Database.SaveNoteAsync(Item);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
