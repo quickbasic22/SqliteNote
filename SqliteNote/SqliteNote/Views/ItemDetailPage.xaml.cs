@@ -1,5 +1,4 @@
 ﻿using SqliteNote.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace SqliteNote.Views

@@ -1,7 +1,4 @@
-﻿using SqliteNote.ViewModels;
-using SqliteNote.Views;
-using System;
-using System.Collections.Generic;
+﻿using SqliteNote.Views;
 using Xamarin.Forms;
 
 namespace SqliteNote

@@ -1,11 +1,7 @@
-﻿using SqliteNote.Models;
-using SqliteNote.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 
 namespace SqliteNote.ViewModels
 {
