@@ -24,23 +24,22 @@
                         <SwipeView.RightItems>
                             <SwipeItem Text="Delete" BackgroundColor="Red" Invoked="SwipeItem_Invoked" />
                         </SwipeView.RightItems>
-                        <StackLayout Padding="10" x:DataType="model:Item">
-                            <Label Text="{Binding Id}" 
+                        <StackLayout Padding="10" x:DataType="model:Item" BackgroundColor="LightBlue">
+                            <Label Text="{Binding Text}" TextColor="Red"
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                            <Label Text="{Binding Text}" 
+                            FontSize="16"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Date, StringFormat='{0:d}'}" TextColor="Blue"
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                            <Label Text="{Binding Date, StringFormat='{0:d}'}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                            <Label Text="{Binding Description}" 
+                            FontSize="16"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Description}" TextColor="Red"
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16"
+                                   FontAttributes="Bold"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"

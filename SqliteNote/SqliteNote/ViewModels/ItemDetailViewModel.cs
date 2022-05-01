@@ -11,9 +11,19 @@ namespace SqliteNote.ViewModels
     {
         private int itemId;
         private int id;
+        private Models.Item item;
         private string text;
         private DateTime? date;
         private string description;
+        public Command SaveCommand { get; }
+        public Command CancelCommand { get; }
+
+        public ItemDetailViewModel()
+        {
+            SaveCommand = new Command(OnSave);
+            CancelCommand = new Command(OnCancel);
+        }
+
         public int Id
         {
             get => id;
@@ -38,6 +48,12 @@ namespace SqliteNote.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        public Models.Item Item
+        {
+            get => item;
+            set => SetProperty(ref item, value);
+        }
+
         public int ItemId
         {
             get
@@ -60,11 +76,26 @@ namespace SqliteNote.ViewModels
                 Text = item.Text;
                 Date = item.Date;
                 Description = item.Description;
+                Item = item;
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+        }
+
+        private async void OnCancel()
+        {
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async void OnSave()
+        {
+            await App.Database.SaveNoteAsync(Item);
+
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
         }
     }
 }
