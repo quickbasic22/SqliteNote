@@ -14,8 +14,8 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    
-    
+
+   
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
@@ -27,8 +27,7 @@
                             <SwipeItem Text="Delete" BackgroundColor="Red" Invoked="SwipeItem_Invoked" />
                         </SwipeView.RightItems>
                         <StackLayout Padding="10" x:DataType="model:Item" BackgroundColor="LightBlue">
-                            <Entry x:Name="SearchBox" Text="" Placeholder="Enter Search here" PlaceholderColor="LightBlue" FontSize="Large" FontAttributes="Bold" />
-                            <Button x:Name="SearchButton" Text="Search" FontSize="Large" FontAttributes="Bold" Clicked="SearchButton_Clicked" />
+                            <SearchBar x:Name="SearchBarControl" Text="" Placeholder="Search Text" PlaceholderColor="LightBlue" FontSize="Large" FontAttributes="Bold" TextChanged="SearchBarControl_TextChanged" />
                             <Label Text="{Binding Text}" TextColor="Red"
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 

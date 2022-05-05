@@ -2,6 +2,7 @@
 using SqliteNote.ViewModels;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace SqliteNote.Views
@@ -31,15 +32,15 @@ namespace SqliteNote.Views
             App.Database.DeleteNoteAsync(item);
             _viewModel.Items.Remove(item);
         }
-
-        private void SearchButton_Clicked(object sender, EventArgs e)
+               
+        private void SearchBarControl_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var collectionview = (CollectionView)sender;
-
-            var item = collectionview.ItemsSource as ObservableCollection<Item>;
-
-            
-
+            var items = _viewModel.Items.Where(t => t.Text.StartsWith(e.NewTextValue));
+            _viewModel.Items.Clear();
+            foreach (var item in items)
+            {
+                _viewModel.Items.Add(item);
+            }
         }
     }
-}
+} 
