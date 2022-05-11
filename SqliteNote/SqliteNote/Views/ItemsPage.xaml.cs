@@ -35,6 +35,7 @@ namespace SqliteNote.Views
                
         private void SearchBarControl_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //var TheItems = App.Database.GetNotesAsync(true);
             var items = _viewModel.Items.Where(t => t.Text.ToUpper() == e.NewTextValue.ToUpper()).ToList();
             _viewModel.Items.Clear();
             foreach (var item in items)
