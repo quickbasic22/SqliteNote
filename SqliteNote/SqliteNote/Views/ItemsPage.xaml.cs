@@ -33,15 +33,34 @@ namespace SqliteNote.Views
             _viewModel.Items.Remove(item);
         }
                
-        private void SearchBarControl_TextChanged(object sender, TextChangedEventArgs e)
+        private async void SearchBarControl_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //var TheItems = App.Database.GetNotesAsync(true);
-            var items = _viewModel.Items.Where(t => t.Text.ToUpper() == e.NewTextValue.ToUpper()).ToList();
-            _viewModel.Items.Clear();
-            foreach (var item in items)
+            var TheItems = await App.Database.GetNotesAsync(true);
+            var items = TheItems.Where(t => t.Text.ToUpper().StartsWith(e.NewTextValue.ToUpper()));
+
+            if (items.Any())
             {
-                _viewModel.Items.Add(item);
+                _viewModel.Items.Clear();
+                foreach (var item in items)
+                {
+                    _viewModel.Items.Add(item);
+                }
             }
+            else
+            {
+                _viewModel.Items.Clear();
+                _viewModel.Items.Add(new Item() { Text = "No Items" });
+            }
+
+            if (e.NewTextValue == "")
+            {
+                foreach (var item in TheItems)
+                {
+                    _viewModel.Items.Add(item);
+                }
+            }
+           
+            
         }
     }
 } 
