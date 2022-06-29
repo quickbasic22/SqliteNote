@@ -32,35 +32,37 @@ namespace SqliteNote.Views
             App.Database.DeleteNoteAsync(item);
             _viewModel.Items.Remove(item);
         }
-               
+
         private async void SearchBarControl_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var TheItems = await App.Database.GetNotesAsync(true);
-            var items = TheItems.Where(t => t.Text.ToUpper().StartsWith(e.NewTextValue.ToUpper()));
+            var searchbar = sender as SearchBar;
 
-            if (items.Any())
+            ItemsViewModel itemsviewmodel = searchbar.BindingContext as ItemsViewModel;
+
+            ObservableCollection<Item> TheItems = itemsviewmodel.Items;
+
+            string searchTerm = e.NewTextValue;
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                _viewModel.Items.Clear();
-                foreach (var item in items)
+                TheItems.Clear();
+                foreach (Item item in await App.Database.GetNotesAsync(true))
                 {
-                    _viewModel.Items.Add(item);
+                    TheItems.Add(item);
                 }
             }
             else
             {
-                _viewModel.Items.Clear();
-                _viewModel.Items.Add(new Item() { Text = "No Items" });
-            }
-
-            if (e.NewTextValue == "")
-            {
-                foreach (var item in TheItems)
+                TheItems.Clear();
+                var allitems = await App.Database.GetNotesAsync(true);
+                var filteredItems = allitems.Where(i => i.Text.ToLower().StartsWith(searchTerm.ToLower()));
+                foreach (Item item in filteredItems)
                 {
-                    _viewModel.Items.Add(item);
+                    TheItems.Add(item);
                 }
             }
-           
-            
+
+
         }
     }
-} 
+}
